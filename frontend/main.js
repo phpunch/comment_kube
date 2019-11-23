@@ -13,7 +13,7 @@ const updateCommentList = commentList => {
 };
 
 // fetch("data.json")
-fetch("http://backend:5000/api/post")
+fetch("http://backend:5000/api/get")
   .then(response => {
     if (response.ok) {
       return response.json();
