@@ -11,7 +11,6 @@ const updateCommentList = commentList => {
   });
 };
 
-// fetch("data.json")
 fetch("http://localhost:5000/api/get")
   .then(response => {
     if (response.ok) {
@@ -48,13 +47,7 @@ submitBtn.addEventListener("click", () => {
   fetch("http://localhost:5000/api/post", options)
     .then(res => res.json())
     .then(commentList => updateCommentList(commentList));
-
-  //   fetch("data2.json")
-  //     .then(res => res.json())
-  //     .then(({ commentList }) => updateCommentList(commentList));
 });
-
-// const closeBtn = document.querySelectorAll(".close-btn");
 
 const addBoxListener = () => {
   const boxes = document.querySelectorAll(".box");
