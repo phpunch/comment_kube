@@ -5,9 +5,9 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-  log:
-    ports:
-      - "8787:8787"
+  # log:
+  #   ports:
+  #     - "8787:8787"
 
   backend:
     depends_on:
