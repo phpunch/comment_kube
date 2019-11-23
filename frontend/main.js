@@ -4,12 +4,11 @@ const updateCommentList = commentList => {
   commentList.forEach(comment => {
     const box = document.createElement("div");
     box.className = "box";
-
-    box.innerHTML = `<div class="name">${comment.name}</div><div class="msg"><p>${comment.msg}</p></div>`;
+    box.setAttribute("id", comment._id);
+    box.innerHTML = `<div class="name">${comment.name}</div><div class="close-btn">X</div><div class="msg"><p>${comment.msg}</p></div>`;
     boxes.appendChild(box);
+    addBoxListener();
   });
-
-  console.log(commentList);
 };
 
 // fetch("data.json")
@@ -54,3 +53,26 @@ submitBtn.addEventListener("click", () => {
   //     .then(res => res.json())
   //     .then(({ commentList }) => updateCommentList(commentList));
 });
+
+// const closeBtn = document.querySelectorAll(".close-btn");
+
+const addBoxListener = () => {
+  const boxes = document.querySelectorAll(".box");
+
+  boxes.forEach(box => {
+    const closeBtn = box.querySelector(".close-btn");
+
+    closeBtn.addEventListener("click", () => {
+      const options = {
+        method: "DELETE"
+      };
+
+      fetch(
+        `http://localhost:5000/api/delete/${box.getAttribute("id")}`,
+        options
+      )
+        .then(res => res.json())
+        .then(commentList => updateCommentList(commentList));
+    });
+  });
+};
