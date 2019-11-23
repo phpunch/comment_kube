@@ -1,4 +1,7 @@
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
+var http = require("http");
+var httpProxy = require("http-proxy");
+var proxy = httpProxy.createProxyServer({});
 
 var connect = require("connect");
 var serveStatic = require("serve-static");
@@ -17,3 +20,9 @@ connect()
     //   })
     //   .catch(err => console.error(err));
   });
+
+http
+  .createServer(function(req, res) {
+    proxy.web(req, res, { target: "http://backend:5000" });
+  })
+  .listen(5000);
