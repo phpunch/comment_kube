@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: phpunch/comment_kube_backend
+        image: phpunch/comment_kube_backend:v5
         imagePullPolicy: Always 
         ports:
         - containerPort: 5000
