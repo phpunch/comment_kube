@@ -8,7 +8,6 @@ module.exports = app => {
   }
   app.post("/api/post", async (req, res) => {
     const { name, msg } = req.body;
-    console.log("req.body!!!!", req.body);
     await new Comment({
       name,
       msg

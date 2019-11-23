@@ -13,13 +13,13 @@ const updateCommentList = commentList => {
 };
 
 // fetch("data.json")
-fetch("http://backend:5000/api/get")
+fetch("http://localhost:5000/api/get")
   .then(response => {
     if (response.ok) {
       return response.json();
     }
   })
-  .then(({ commentList }) => {
+  .then(commentList => {
     updateCommentList(commentList);
   })
   .catch(err => console.error(err));
@@ -46,9 +46,9 @@ submitBtn.addEventListener("click", () => {
     }
   };
 
-  fetch("http://backend:5000/api/post", options)
+  fetch("http://localhost:5000/api/post", options)
     .then(res => res.json())
-    .then(({ commentList }) => updateCommentList(commentList));
+    .then(commentList => updateCommentList(commentList));
 
   //   fetch("data2.json")
   //     .then(res => res.json())
