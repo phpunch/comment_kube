@@ -1,0 +1,27 @@
+version: '3.0'
+
+services:
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  backend:
+    depends_on:
+      - db
+    build: backend
+    ports:
+      - "5000:5000"
+    restart: always
+
+  frontend:
+    depends_on:
+      - backend
+    build: frontend
+    ports:
+      - "3000:3000"
+    links:
+      - backend
+    environment: 
+      - API_ENDPOINT=backend
+    restart: always

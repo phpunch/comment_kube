@@ -1,0 +1,3 @@
+docker rm comment_kube_frontend_1 comment_kube_backend_1
+docker image rm comment_kube_frontend comment_kube_backend
+docker-compose up
