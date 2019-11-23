@@ -15,11 +15,11 @@ services:
     restart: always
 
   frontend:
-    # depends_on:
-    #   - backend
+    depends_on:
+      - backend
     build: frontend
     ports:
-      - "3000:80"
-    # links:
-    #   - backend
+      - "3000:3000"
+    links:
+      - backend
     restart: always
