@@ -30,4 +30,7 @@ app.use(function(req, res, next) {
 });
 require("./routes/routeBaby")(app);
 
+app.listen("5000", () => {
+  console.log("listen on PORT 5000");
+});
 module.exports = app;
