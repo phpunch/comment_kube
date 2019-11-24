@@ -5,12 +5,12 @@ metadata:
   labels:
     app: frontend
 spec:
-  type: LoadBalancer 
+  type: NodePort 
   ports:
     # service port in cluster
   - port: 3000
     # port to contact inside container
-    targetPort: 3000
+    nodePort: 31001
   selector:
     app: frontend
 ---
@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: phpunch/comment_kube_frontend:v5
+        image: iamsirid/comment_kube-frontend
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
@@ -42,3 +42,4 @@ spec:
           - name: API_ENDPOINT
             value: backend
       restartPolicy: Always
+
