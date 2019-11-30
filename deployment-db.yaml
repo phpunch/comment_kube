@@ -5,7 +5,7 @@ metadata:
   labels:
     app: db
 spec:
-  # type: LoadBalancer
+  type: LoadBalancer
   ports:
     # service port in cluster
   - port: 27017
