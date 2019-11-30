@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: db
-        image: apcheamitru/arm32v7-mongo
+        image: arm64v8/mongo
         imagePullPolicy: Always
         ports:
         - containerPort: 27017
