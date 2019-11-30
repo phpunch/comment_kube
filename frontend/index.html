@@ -9,16 +9,25 @@
   </head>
   <body>
     <div class="header">
-      Comment Kub
+      <div class="title">Comment.Kub</div>
     </div>
+
     <div class="comment-form">
-      Name: <input type="text" id="name" name="name" /><br /><br />
-      Message: <textarea rows="4" cols="50" name="msg"> </textarea><br /><br />
+      <div class="form-box">
+        <div class="name-input">
+          <input type="text" id="name" name="name" placeholder="name" />
+        </div>
+        <div class="message-input">
+          <textarea name="msg" placeholder="message" rows="5"></textarea>
+        </div>
 
-      <button class="submit-btn">Submit</button>
+        <div class="submit-action">
+          <button class="submit-btn">Submit</button>
+        </div>
+      </div>
     </div>
 
-    <hr />
+    <!-- <hr /> -->
     <div class="boxes"></div>
     <script src="main.js"></script>
   </body>

@@ -1,9 +1,9 @@
 const updateCommentList = commentList => {
   const boxes = document.querySelector(".boxes");
   boxes.innerHTML = "";
-  commentList.forEach(comment => {
+  commentList.forEach((comment, i) => {
     const box = document.createElement("div");
-    box.className = "box";
+    box.className = `box ${["green", "blue", "red"][i % 3]}`;
     box.setAttribute("id", comment._id);
     box.innerHTML = `<div class="name">${comment.name}</div><div class="close-btn">X</div><div class="msg"><p>${comment.msg}</p></div>`;
     boxes.appendChild(box);
