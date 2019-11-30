@@ -5,24 +5,34 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-  # log:
-  #   ports:
-  #     - "8787:8787"
+  #  log:
+  #    ports:
+  #      - "8787:8787"
 
   backend:
     depends_on:
       - db
+      #- logging
     build: backend
     ports:
       - "5000:5000"
+    #links: -logging
     restart: always
 
   backend2:
     depends_on:
       - db
+      #- logging
     build: backend2
     ports:
       - "6000:6000"
+    #links: -logging
+    restart: always
+
+  logging:
+    build: logging
+    ports:
+      - "8787:8787"
     restart: always
 
   frontend:
