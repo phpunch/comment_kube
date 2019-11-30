@@ -5,7 +5,7 @@ metadata:
   labels:
     app: db
 spec:
-  # type: LoadBalancer
+  type: LoadBalancer
   ports:
     # service port in cluster
   - port: 27017
@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: db
-        image: mongo:latest #:version 
+        image: apcheamitru/arm32v7-mongo
         imagePullPolicy: Always
         ports:
         - containerPort: 27017

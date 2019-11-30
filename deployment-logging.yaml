@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: log
-        image: saranpat/comment_kube_log
+        image: saranpat/comment_kube_logging
         imagePullPolicy: Always 
         ports:
         - containerPort: 8787
