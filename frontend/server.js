@@ -11,13 +11,15 @@ app.use(bodyParser.json());
 
 const backendEndPoint =
   process.env.NODE_ENV == "production" ? "backend" : "localhost";
+const backend2EndPoint =
+  process.env.NODE_ENV == "production" ? "backend2" : "localhost";
 
 app.get("/", function(req, res) {
   res.sendFile("index.html");
 });
 
 app.get("/api/get", function(req, res) {
-  fetch(`http://${backendEndPoint}:5000/api/get`)
+  fetch(`http://${backend2EndPoint}:6000/api/get`)
     .then(response => {
       if (response.ok) {
         return response.json();

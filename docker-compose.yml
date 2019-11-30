@@ -17,12 +17,22 @@ services:
       - "5000:5000"
     restart: always
 
+  backend2:
+    depends_on:
+      - db
+    build: backend2
+    ports:
+      - "6000:6000"
+    restart: always
+
   frontend:
     depends_on:
       - backend
+      - backend2
     build: frontend
     ports:
       - "3000:3000"
     links:
       - backend
+      - backend2
     restart: always

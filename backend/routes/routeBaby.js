@@ -17,10 +17,10 @@ module.exports = app => {
 
     // res.status(200);
   });
-  app.get("/api/get", async (req, res) => {
-    const comments = await getAll();
-    res.send(comments);
-  });
+  // app.get("/api/get", async (req, res) => {
+  //   const comments = await getAll();
+  //   res.send(comments);
+  // });
   app.delete("/api/delete/:id", async (req, res) => {
     try {
       Comment.deleteOne({ _id: req.params.id }, async function(err) {
