@@ -8,11 +8,26 @@
     <title>Comment</title>
   </head>
   <body>
-    Name: <input type="text" id="name" name="name" /><br /><br />
-    Message: <textarea rows="4" cols="50" name="msg"> </textarea><br /><br />
+    <div class="header">
+      <div class="title">Comment.Kub</div>
+    </div>
 
-    <button class="submit-btn">Submit</button>
-    <hr />
+    <div class="comment-form">
+      <div class="form-box">
+        <div class="name-input">
+          <input type="text" id="name" name="name" placeholder="name" />
+        </div>
+        <div class="message-input">
+          <textarea name="msg" placeholder="message" rows="5"></textarea>
+        </div>
+
+        <div class="submit-action">
+          <button class="submit-btn">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <hr /> -->
     <div class="boxes"></div>
     <script src="main.js"></script>
   </body>

@@ -1,9 +1,9 @@
 const updateCommentList = commentList => {
   const boxes = document.querySelector(".boxes");
   boxes.innerHTML = "";
-  commentList.forEach(comment => {
+  commentList.forEach((comment, i) => {
     const box = document.createElement("div");
-    box.className = "box";
+    box.className = `box ${["green", "blue", "red"][i % 3]}`;
     box.setAttribute("id", comment._id);
     box.innerHTML = `<div class="name">${comment.name}</div><div class="close-btn">X</div><div class="msg"><p>${comment.msg}</p></div>`;
     boxes.appendChild(box);
@@ -11,7 +11,7 @@ const updateCommentList = commentList => {
   });
 };
 
-fetch("http://localhost:5000/api/get")
+fetch("api/get")
   .then(response => {
     if (response.ok) {
       return response.json();
@@ -44,7 +44,7 @@ submitBtn.addEventListener("click", () => {
     }
   };
 
-  fetch("http://localhost:5000/api/post", options)
+  fetch("api/post", options)
     .then(res => res.json())
     .then(commentList => updateCommentList(commentList));
 });
@@ -60,10 +60,7 @@ const addBoxListener = () => {
         method: "DELETE"
       };
 
-      fetch(
-        `http://localhost:5000/api/delete/${box.getAttribute("id")}`,
-        options
-      )
+      fetch(`api/delete/${box.getAttribute("id")}`, options)
         .then(res => res.json())
         .then(commentList => updateCommentList(commentList));
     });

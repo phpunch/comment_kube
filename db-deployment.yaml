@@ -5,7 +5,7 @@ metadata:
   labels:
     app: db
 spec:
-  # type: LoadBalancer ?? 
+  type: LoadBalancer
   ports:
     # service port in cluster
   - port: 27017
@@ -21,7 +21,7 @@ metadata:
   labels:
     app: db
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: db
