@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  # type: LoadBalancer # For public cloud only
+  ports:
+    # service port in cluster
+  - port: 5000
+    # port to contact inside container
+    targetPort: 5000
+  selector:
+    app: backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: saranpat/comment_kube_backend
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 5000
+      restartPolicy: Always

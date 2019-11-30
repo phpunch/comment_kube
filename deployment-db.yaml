@@ -1,41 +1,39 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: db
   labels:
-    app: backend
+    app: db
 spec:
-  type: LoadBalancer
+  # type: LoadBalancer
   ports:
     # service port in cluster
-  - port: 5000
+  - port: 27017
     # port to contact inside container
-    targetPort: 5000
+    targetPort: 27017
   selector:
-    app: backend
+    app: db
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: db
   labels:
-    app: backend
+    app: db
 spec:
   replicas: 2
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
-      app: backend
+      app: db
   template:
     metadata:
       labels:
-        app: backend
+        app: db
     spec:
       containers:
-      - name: backend
-        image: saranpat/comment_kube_backend
-        imagePullPolicy: Always 
+      - name: db
+        image: mongo:latest #:version 
+        imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+        - containerPort: 27017
       restartPolicy: Always
