@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: log
+  name: logging
   labels:
-    app: log
+    app: logging
 spec:
   # type: LoadBalancer
   ports:
@@ -12,29 +12,29 @@ spec:
     # port to contact inside container
     targetPort: 8787
   selector:
-    app: log
+    app: logging
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: log
+  name: logging
   labels:
-    app: log
+    app: logging
 spec:
   replicas: 2
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: log
+      app: logging
   template:
     metadata:
       labels:
-        app: log
+        app: logging
     spec:
       containers:
-      - name: log
-        image: saranpat/comment_kube_logging
+      - name: logging
+        image: saranpat/comment_kube_loggingging
         imagePullPolicy: Always 
         ports:
         - containerPort: 8787
