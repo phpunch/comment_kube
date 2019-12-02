@@ -1,0 +1,43 @@
+name: Docker Buildx CI
+
+on: 
+  push:
+    branches: master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Docker Buildx
+      uses: crazy-max/ghaction-docker-buildx@v1.0.4  
+    - name: Run Buildx for Backend
+      run: |
+        docker buildx build \
+          --platform linux/arm/v7 \
+          -t saranpat/comment_kube_backend \
+          --output "type=image,push=false" \
+          --file ./backend/Dockerfile ./backend
+    - name: Run Buildx for Backend2
+      run: |
+        docker buildx build \
+          --platform linux/arm/v7 \
+          -t saranpat/comment_kube_backend2 \
+          --output "type=image,push=false" \
+          --file ./backend2/Dockerfile ./backend2
+    - name: Run Buildx for frontend
+      run: |
+        docker buildx build \
+          --platform linux/arm/v7 \
+          -t saranpat/comment_kube_frontend \
+          --output "type=image,push=false" \
+          --file ./frontend/Dockerfile ./frontend
+    - name: Run Buildx for logging
+      run: |
+        docker buildx build \
+          --platform linux/arm/v7 \
+          -t saranpat/comment_kube_logging \
+          --output "type=image,push=false" \
+          --file ./logging/Dockerfile ./logging
