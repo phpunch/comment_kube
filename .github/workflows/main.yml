@@ -19,6 +19,8 @@ jobs:
           -t ${{ secrets.DOCKER_REPO_NAME_BACKEND }} \
           --output "type=image,push=false" \
           --file ./backend/Dockerfile ./backend
+        echo finished build Backend
+        docker image ls
     - name: Run Buildx for Backend2
       run: |
         docker buildx build \
@@ -26,6 +28,8 @@ jobs:
           -t ${{ secrets.DOCKER_REPO_NAME_BACKEND2 }} \
           --output "type=image,push=false" \
           --file ./backend2/Dockerfile ./backend2
+        echo finished build Backend2
+        docker image ls
     - name: Run Buildx for frontend
       run: |
         docker buildx build \
@@ -33,6 +37,8 @@ jobs:
           -t ${{ secrets.DOCKER_REPO_NAME_FRONTEND }} \
           --output "type=image,push=false" \
           --file ./frontend/Dockerfile ./frontend
+        echo finished build frontend
+        docker image ls
     - name: Run Buildx for logging
       run: |
         docker buildx build \
@@ -40,6 +46,8 @@ jobs:
           -t ${{ secrets.DOCKER_REPO_NAME_LOGGING }} \
           --output "type=image,push=false" \
           --file ./logging/Dockerfile ./logging
+        echo finished build Logging
+        docker image ls
     - name: Publish to comment_kube_backend Docker Hub Registry
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
