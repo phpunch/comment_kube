@@ -15,32 +15,36 @@ jobs:
     - name: Run Buildx for Backend
       run: |
         docker buildx build \
-          --platform linux/arm/v7 \
+          --platform linux/amd64,linux/arm64,linux/arm/v7 \
           --tag phpunch/comment_kube_backend \
+          --output "type=image,push=false" \
           --file ./backend/Dockerfile ./backend
         echo finished build Backend
         docker image ls
     - name: Run Buildx for Backend2
       run: |
         docker buildx build \
-          --platform linux/arm/v7 \
+          --platform linux/amd64,linux/arm64,linux/arm/v7 \
           --tag phpunch/comment_kube_backend2 \
+          --output "type=image,push=false" \
           --file ./backend2/Dockerfile ./backend2
         echo finished build Backend2
         docker image ls
     - name: Run Buildx for frontend
       run: |
         docker buildx build \
-          --platform linux/arm/v7 \
+          --platform linux/amd64,linux/arm64,linux/arm/v7 \
           --tag phpunch/comment_kube_frontend \
+          --output "type=image,push=false" \
           --file ./frontend/Dockerfile ./frontend
         echo finished build frontend
         docker image ls
     - name: Run Buildx for logging
       run: |
         docker buildx build \
-          --platform linux/arm/v7 \
+          --platform linux/amd64,linux/arm64,linux/arm/v7 \
           --tag phpunch/comment_kube_logging \
+          --output "type=image,push=false" \
           --file ./logging/Dockerfile ./logging
         echo finished build Logging
         docker image ls
