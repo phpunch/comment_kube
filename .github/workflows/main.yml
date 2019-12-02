@@ -16,7 +16,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          -t ${{ secrets.DOCKER_REPO_NAME_BACKEND }} \
+          -t phpunch/comment_kube_backend \
           --output "type=image,push=false" \
           --file ./backend/Dockerfile ./backend
         echo finished build Backend
@@ -25,7 +25,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          -t ${{ secrets.DOCKER_REPO_NAME_BACKEND2 }} \
+          -t phpunch/comment_kube_backend2 \
           --output "type=image,push=false" \
           --file ./backend2/Dockerfile ./backend2
         echo finished build Backend2
@@ -34,7 +34,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          -t ${{ secrets.DOCKER_REPO_NAME_FRONTEND }} \
+          -t phpunch/comment_kube_frontend \
           --output "type=image,push=false" \
           --file ./frontend/Dockerfile ./frontend
         echo finished build frontend
@@ -43,7 +43,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          -t ${{ secrets.DOCKER_REPO_NAME_LOGGING }} \
+          -t phpunch/comment_kube_logging \
           --output "type=image,push=false" \
           --file ./logging/Dockerfile ./logging
         echo finished build Logging
@@ -51,25 +51,25 @@ jobs:
     - name: Publish to comment_kube_backend Docker Hub Registry
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
-        name: ${{ secrets.DOCKER_REPO_NAME_BACKEND }}
+        name: phpunch/comment_kube_backend
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Publish to comment_kube_backend2 Docker Hub Registry
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
-        name: ${{ secrets.DOCKER_REPO_NAME_BACKEND2 }}
+        name: phpunch/comment_kube_backend2
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Publish to comment_kube_frontend Docker Hub Registry
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
-        name: ${{ secrets.DOCKER_REPO_NAME_FRONTEND }}
+        name: phpunch/comment_kube_frontend
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Publish to comment_kube_logging Docker Hub Registry
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
-        name: ${{ secrets.DOCKER_REPO_NAME_LOGGING }}
+        name: phpunch/comment_kube_logging
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
