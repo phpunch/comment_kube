@@ -15,39 +15,39 @@ jobs:
     - name: Run Buildx for Backend
       run: |
         docker buildx build \
-          --platform linux/amd64,linux/arm64,linux/arm/v7 \
-          --tag phpunch/comment_kube_backend \
+          --platform linux/arm/v7 \
+          --tag "phpunch/comment_kube_backend" \
           --output "type=image,push=false" \
           --file ./backend/Dockerfile ./backend
         echo finished build Backend
-        docker image ls
+        docker image -a
     - name: Run Buildx for Backend2
       run: |
         docker buildx build \
-          --platform linux/amd64,linux/arm64,linux/arm/v7 \
-          --tag phpunch/comment_kube_backend2 \
+          --platform linux/arm/v7 \
+          --tag "phpunch/comment_kube_backend2" \
           --output "type=image,push=false" \
           --file ./backend2/Dockerfile ./backend2
         echo finished build Backend2
-        docker image ls
+        docker image -a
     - name: Run Buildx for frontend
       run: |
         docker buildx build \
-          --platform linux/amd64,linux/arm64,linux/arm/v7 \
-          --tag phpunch/comment_kube_frontend \
+          --platform linux/arm/v7 \
+          --tag "phpunch/comment_kube_frontend" \
           --output "type=image,push=false" \
           --file ./frontend/Dockerfile ./frontend
         echo finished build frontend
-        docker image ls
+        docker image -a
     - name: Run Buildx for logging
       run: |
         docker buildx build \
-          --platform linux/amd64,linux/arm64,linux/arm/v7 \
-          --tag phpunch/comment_kube_logging \
+          --platform linux/arm/v7 \
+          --tag "phpunch/comment_kube_logging" \
           --output "type=image,push=false" \
           --file ./logging/Dockerfile ./logging
         echo finished build Logging
-        docker image ls
+        docker image -a
     - name: Publish to comment_kube_backend Docker Hub Registry
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
