@@ -15,12 +15,14 @@ jobs:
       uses: crazy-max/ghaction-docker-buildx@v1.0.4
     - name: Available platforms
       run: echo ${{ steps.buildx.outputs.platforms }}
+    - name: Login Docker
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
     - name: Run Buildx for Backend
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
           --tag "phpunch/comment_kube_backend" \
-          --output "type=registry,push=false" \
+          --output "type=registry,push=true" \
           --file ./backend/Dockerfile ./backend
         echo finished build Backend
         ls -lai ./backend
@@ -30,7 +32,7 @@ jobs:
         docker buildx build \
           --platform linux/arm/v7 \
           --tag "phpunch/comment_kube_backend2" \
-          --output "type=registry,push=false" \
+          --output "type=registry,push=true" \
           --file ./backend2/Dockerfile ./backend2
         echo finished build Backend2
         docker image ls
@@ -39,7 +41,7 @@ jobs:
         docker buildx build \
           --platform linux/arm/v7 \
           --tag "phpunch/comment_kube_frontend" \
-          --output "type=registry,push=false" \
+          --output "type=registry,push=true" \
           --file ./frontend/Dockerfile ./frontend
         echo finished build frontend
         docker image ls
@@ -48,7 +50,7 @@ jobs:
         docker buildx build \
           --platform linux/arm/v7 \
           --tag "phpunch/comment_kube_logging" \
-          --output "type=registry,push=false" \
+          --output "type=registry,push=true" \
           --file ./logging/Dockerfile ./logging
         echo finished build Logging
         docker image ls
