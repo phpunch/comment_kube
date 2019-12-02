@@ -34,3 +34,10 @@ app.listen("6000", () => {
   console.log("listen on PORT 6000");
 });
 module.exports = app;
+
+process.on('SIGTERM', () => {
+  db.close(() => {
+    console.log('SIGTERM initiated');
+  });
+  process.exit(0);
+});

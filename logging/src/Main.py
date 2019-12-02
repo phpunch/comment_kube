@@ -8,13 +8,13 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     requests.post(f"https://discordapp.com/api/webhooks/{hook}", json={"content": "Someone access '/'"})
-    return 'Hello world'
+    return 'Hello world\n'
 
 @app.route('/log', methods=['GET'])
 def log():
     logmsg = request.args.get('message')
     requests.post(f"https://discordapp.com/api/webhooks/{hook}", json={"content": f"{logmsg}"})
-    return f'logged {logmsg}'
+    return f'logged {logmsg}\n'
 
 if __name__ == '__main__':
     app.run(debug=False, port=8787, host='0.0.0.0')
