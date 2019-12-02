@@ -32,6 +32,7 @@ spec:
       labels:
         app: logging
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
       - name: logging
         image: saranpat/comment_kube_logging

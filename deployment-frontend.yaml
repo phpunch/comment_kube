@@ -32,6 +32,7 @@ spec:
       labels:
         app: frontend
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
       - name: frontend
         image: saranpat/comment_kube_frontend
