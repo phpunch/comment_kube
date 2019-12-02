@@ -11,12 +11,15 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Docker Buildx
-      uses: crazy-max/ghaction-docker-buildx@v1.0.4  
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1.0.4
+    - name: Available platforms
+      run: echo ${{ steps.buildx.outputs.platforms }}
     - name: Run Buildx for Backend
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_backend:latest" \
+          --tag "phpunch/comment_kube_backend" \
           --output "type=image,push=false" \
           --file ./backend/Dockerfile ./backend
         echo finished build Backend
@@ -25,7 +28,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_backend2:latest" \
+          --tag "phpunch/comment_kube_backend2" \
           --output "type=image,push=false" \
           --file ./backend2/Dockerfile ./backend2
         echo finished build Backend2
@@ -34,7 +37,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_frontend:latest" \
+          --tag "phpunch/comment_kube_frontend" \
           --output "type=image,push=false" \
           --file ./frontend/Dockerfile ./frontend
         echo finished build frontend
@@ -43,7 +46,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_logging:latest" \
+          --tag "phpunch/comment_kube_logging" \
           --output "type=image,push=false" \
           --file ./logging/Dockerfile ./logging
         echo finished build Logging
