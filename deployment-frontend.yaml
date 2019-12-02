@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: saranpat/comment_kube_frontend
+        image: phpunch/comment_kube_frontend
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
