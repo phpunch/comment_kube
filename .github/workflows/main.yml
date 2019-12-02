@@ -25,7 +25,6 @@ jobs:
           --output "type=registry,push=true" \
           --file ./backend/Dockerfile ./backend
         echo finished build Backend
-        ls -lai ./backend
         docker image ls
     - name: Run Buildx for Backend2
       run: |
@@ -54,28 +53,3 @@ jobs:
           --file ./logging/Dockerfile ./logging
         echo finished build Logging
         docker image ls
-    - name: Publish to comment_kube_backend Docker Hub Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.9
-      with:
-        name: phpunch/comment_kube_backend
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Publish to comment_kube_backend2 Docker Hub Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.9
-      with:
-        name: phpunch/comment_kube_backend2
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Publish to comment_kube_frontend Docker Hub Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.9
-      with:
-        name: phpunch/comment_kube_frontend
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Publish to comment_kube_logging Docker Hub Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.9
-      with:
-        name: phpunch/comment_kube_logging
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
