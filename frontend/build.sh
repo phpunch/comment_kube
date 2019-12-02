@@ -1,2 +1,2 @@
-docker buildx build -t saranpat/comment_kube_frontend .
-docker push saranpat/comment_kube_frontend
+docker buildx build -t phpunch/comment_kube_frontend .
+docker push phpunch/comment_kube_frontend

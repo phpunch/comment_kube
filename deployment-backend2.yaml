@@ -35,7 +35,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: backend2
-        image: saranpat/comment_kube_backend2
+        image: phpunch/comment_kube_backend2
         imagePullPolicy: Always 
         ports:
         - containerPort: 6000

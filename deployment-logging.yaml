@@ -35,7 +35,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: logging
-        image: saranpat/comment_kube_logging
+        image: phpunch/comment_kube_logging
         imagePullPolicy: Always 
         ports:
         - containerPort: 8787
