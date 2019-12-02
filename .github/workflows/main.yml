@@ -16,38 +16,38 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_backend" \
+          --tag "phpunch/comment_kube_backend:latest" \
           --output "type=image,push=false" \
           --file ./backend/Dockerfile ./backend
         echo finished build Backend
-        docker image -a
+        docker image ls
     - name: Run Buildx for Backend2
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_backend2" \
+          --tag "phpunch/comment_kube_backend2:latest" \
           --output "type=image,push=false" \
           --file ./backend2/Dockerfile ./backend2
         echo finished build Backend2
-        docker image -a
+        docker image ls
     - name: Run Buildx for frontend
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_frontend" \
+          --tag "phpunch/comment_kube_frontend:latest" \
           --output "type=image,push=false" \
           --file ./frontend/Dockerfile ./frontend
         echo finished build frontend
-        docker image -a
+        docker image ls
     - name: Run Buildx for logging
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --tag "phpunch/comment_kube_logging" \
+          --tag "phpunch/comment_kube_logging:latest" \
           --output "type=image,push=false" \
           --file ./logging/Dockerfile ./logging
         echo finished build Logging
-        docker image -a
+        docker image ls
     - name: Publish to comment_kube_backend Docker Hub Registry
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
