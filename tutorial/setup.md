@@ -401,6 +401,18 @@ git pull
 ./redeploy_kube.sh
 ```
 
+Fist time deploy
+
+```shell
+./make_kube.sh
+```
+
+Delete pod
+
+```shell
+./delete_kube.sh
+```
+
 # Finished
 
 Now, you can access the website at [http://192.168.0.203](http://192.168.0.203)
